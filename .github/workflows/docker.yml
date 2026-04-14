@@ -1,4 +1,4 @@
-name: Docker CI
+name: CI/CD Pipeline
 
 on:
   push:
@@ -6,7 +6,7 @@ on:
       - main
 
 jobs:
-  build:
+  build-and-push:
     runs-on: ubuntu-latest
 
     steps:
@@ -16,11 +16,20 @@ jobs:
       - name: Set up Docker
         uses: docker/setup-buildx-action@v3
 
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
       - name: Build Backend Image
-        run: docker build -t backend ./backend
+        run: docker build -t madhu1210/productivity-backend ./backend
 
       - name: Build Frontend Image
-        run: docker build -t frontend ./frontend
+        run: docker build -t madhu1210/productivity-frontend ./frontend
 
-      - name: Success Message
-        run: echo "Docker images built successfully 🚀"
+      - name: Push Backend Image
+        run: docker push madhu1210/productivity-backend
+
+      - name: Push Frontend Image
+        run: docker push madhu1210/productivity-frontend
+
+      - name: Done
+        run: echo "CI/CD Completed 🚀"
