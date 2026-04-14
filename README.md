@@ -1,101 +1,136 @@
-# 🚀 Productivity Tracker App (Dockerized Full-Stack Project)
+# 🚀 Productivity Tracker App (Dockerized Full-Stack with CI/CD)
 
 ## 📌 Project Overview
 
-This is a full-stack **Productivity Tracker Web Application** that allows users to:
+This project is a **full-stack Productivity Tracker Web Application** that allows users to manage their daily tasks efficiently.
+It includes secure authentication, task management features, containerization, and a complete CI/CD pipeline.
 
-* Register and log in securely
-* Add, update, and delete tasks
-* Track their daily productivity
-
-The application is fully containerized using Docker and runs as a multi-container system using Docker Compose.
+The application demonstrates real-world development practices by integrating **frontend, backend, Docker, and automated DevOps workflows**.
 
 ---
 
 ## 🛠️ Tech Stack
 
-### Frontend
+### 🔹 Frontend
 
 * HTML
 * CSS
 * JavaScript
 
-### Backend
+### 🔹 Backend
 
 * Node.js
 * Express.js
 
-### Authentication
+### 🔹 Authentication
 
 * JSON Web Tokens (JWT)
 
-### DevOps
+### 🔹 DevOps & Tools
 
-* Docker
-* Docker Compose
+* Docker (Containerization)
+* Docker Compose (Multi-container orchestration)
+* GitHub Actions (CI/CD Pipeline)
+* Docker Hub (Container Registry)
 
 ---
 
 ## 🧠 Architecture
 
-Frontend → Backend API → Data Storage (JSON)
+Frontend → Backend API → Data Storage (JSON file)
 
-* The frontend sends HTTP requests to the backend
-* The backend handles authentication and task operations
-* Data is stored in a local JSON file
+* The frontend interacts with backend APIs using HTTP requests
+* Backend handles authentication and task operations
+* Data is stored in a lightweight JSON-based storage system
+* Services communicate internally via Docker network
 
 ---
 
 ## ⚙️ Features
 
-* 🔐 User Registration & Login (JWT-based authentication)
-* 📋 Create, Read, Update, Delete (CRUD) Tasks
-* ✅ Mark tasks as completed
-* ❌ Delete tasks
-* 🔄 Real-time UI updates
+### 🔐 Authentication
+
+* User Registration
+* User Login
+* JWT-based authentication
+
+### 📋 Task Management
+
+* Add tasks
+* View tasks
+* Mark tasks as completed
+* Delete tasks
+
+### 🔄 System Features
+
+* Real-time UI updates
+* Persistent storage (JSON file)
+* Secure API communication
 
 ---
 
-## 🐳 Docker Setup
+## 🐳 Containerization (Docker)
 
-### 1️⃣ Backend Dockerfile
+The application is fully containerized:
 
-* Uses Node.js base image
-* Installs dependencies
-* Runs Express server
+### 🔹 Backend Container
 
-### 2️⃣ Frontend Dockerfile
+* Built using Node.js base image
+* Handles API and authentication
 
-* Uses Node.js
-* Serves static files using `serve`
+### 🔹 Frontend Container
 
-### 3️⃣ Docker Compose
+* Serves static UI using `serve`
 
-* Runs frontend and backend as separate services
-* Enables inter-container communication
-* Exposes ports:
+### 🔹 Docker Compose
 
-  * Frontend → 3000
-  * Backend → 5000
+* Runs frontend and backend together
+* Enables service-to-service communication
+
+### 📡 Ports
+
+* Frontend → 3000
+* Backend → 5000
 
 ---
 
-## 🚀 How to Run the Project
+## 🔁 CI/CD Pipeline (GitHub Actions)
 
-### Prerequisites
+A complete CI/CD pipeline is implemented using GitHub Actions.
+
+### 🔹 Continuous Integration (CI)
+
+* Triggered on every push to `main`
+* Automatically builds Docker images for:
+
+  * Backend
+  * Frontend
+
+### 🔹 Continuous Deployment (CD)
+
+* Logs into Docker Hub securely using access tokens
+* Pushes Docker images automatically to:
+
+  * `madhu1210/productivity-backend`
+  * `madhu1210/productivity-frontend`
+
+### 🔄 Pipeline Flow
+
+Git Push → GitHub Actions → Build Images → Push to Docker Hub
+
+---
+
+## 🚀 How to Run Locally
+
+### 🔹 Prerequisites
 
 * Docker Desktop installed and running
 
-### Steps
+### 🔹 Steps
 
 ```bash
-# Clone the repository
 git clone <your-repo-link>
-
-# Navigate to project folder
 cd productivity-app
-
-# Run containers
 docker-compose up --build
 ```
 
@@ -104,20 +139,7 @@ docker-compose up --build
 ## 🌐 Access the Application
 
 Open in browser:
-
-```
 http://localhost:3000
-```
-
----
-
-## 🔍 Key Learnings
-
-* Built a full-stack web application from scratch
-* Implemented secure authentication using JWT
-* Containerized applications using Docker
-* Managed multi-container setup using Docker Compose
-* Understood service-to-service communication in Docker networks
 
 ---
 
@@ -136,8 +158,23 @@ productivity-app/
 │   ├── index.html
 │   └── Dockerfile
 │
-└── docker-compose.yml
+├── docker-compose.yml
+└── .github/
+    └── workflows/
+        └── docker.yml
 ```
+
+---
+
+## 🔍 Key Learnings
+
+* Built a full-stack web application from scratch
+* Implemented secure authentication using JWT
+* Containerized applications using Docker
+* Managed multi-container architecture using Docker Compose
+* Implemented CI/CD pipeline using GitHub Actions
+* Automated Docker image build and deployment to Docker Hub
+* Understood DevOps workflows and automation pipelines
 
 ---
 
@@ -145,8 +182,9 @@ productivity-app/
 
 * Add database (MongoDB / PostgreSQL)
 * Improve UI/UX design
-* Add productivity analytics dashboard
-* Deploy to cloud (AWS / Azure)
+* Add analytics dashboard
+* Deploy application to cloud (AWS / Azure)
+* Implement automated deployment to production
 
 ---
 
@@ -158,4 +196,6 @@ Madhumitha H
 
 ## ⭐ Conclusion
 
-This project demonstrates a complete workflow from development to containerization, showcasing practical skills in full-stack development and DevOps fundamentals.
+This project demonstrates a complete end-to-end development lifecycle including application development, containerization, and CI/CD automation.
+It showcases strong skills in Full Stack Development and DevOps practices.
+
